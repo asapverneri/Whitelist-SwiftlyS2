@@ -1,0 +1,9 @@
+{
+  "usage.hint": "[darkblue][Whitelist] [default]Usage: !{0} <steamid64>",
+  "invalid.steamid": "[darkblue][Whitelist] [default]Invalid SteamID. Must be a 17-digits..",
+
+  "whitelist.added": "[darkblue][Whitelist] [green]SteamID {0} added to whitelist.",
+  "whitelist.removed": "[darkblue][Whitelist] [red]SteamID {0} removed from whitelist.",
+  "whitelist.contains": "[darkblue][Whitelist] [default]SteamID {0} is already whitelisted.",
+  "whitelist.notfound": "[darkblue][Whitelist] [default]SteamID {0} was not found in the whitelist."
+}
