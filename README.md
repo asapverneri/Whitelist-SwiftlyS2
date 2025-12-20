@@ -20,7 +20,7 @@
 <p>✅ Configurable commands</p>
 <p>✅ Configurable permission</p>
 <br>
-<p>⬜ ...</p>
+<p>⬜ Blacklisting</p>
 
 ---
 
