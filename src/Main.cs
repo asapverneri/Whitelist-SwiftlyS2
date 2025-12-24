@@ -12,7 +12,7 @@ using SwiftlyS2.Shared.ProtobufDefinitions;
 
 namespace Whitelist;
 
-[PluginMetadata(Id = "Whitelist", Version = "1.0.0", Name = "Whitelist", Author = "verneri")]
+[PluginMetadata(Id = "Whitelist", Version = "1.2.0", Name = "Whitelist", Author = "verneri")]
 public partial class Whitelist(ISwiftlyCore core) : BasePlugin(core) {
 
     private PluginConfig _config = null!;
@@ -41,8 +41,13 @@ public partial class Whitelist(ISwiftlyCore core) : BasePlugin(core) {
 
         Core.GameEvent.HookPost<EventPlayerConnectFull>(OnPlayerConnectFull);
 
-        Core.Command.RegisterCommand($"{_config.WhitelistCommand}", OnWlcommand, false, $"{_config.PermissionForCommands}");
-        Core.Command.RegisterCommand($"{_config.UnWhitelistCommand}", OnUwlcommand, false, $"{_config.PermissionForCommands}");
+        Core.Command.RegisterCommand($"{_config.AddCommand}", OnWlcommand, false, $"{_config.PermissionForCommands}");
+        Core.Command.RegisterCommand($"{_config.RemoveCommand}", OnUwlcommand, false, $"{_config.PermissionForCommands}");
+
+        if (_config.Mode != 1 && _config.Mode != 2)
+        {
+            Core.Logger.LogCritical("Config.Mode is invalid. Please use 1 for whitelist and 2 for blacklisting.");
+        }
     }
 
     public override void Unload() {
@@ -88,19 +93,31 @@ public partial class Whitelist(ISwiftlyCore core) : BasePlugin(core) {
             return HookResult.Continue;
 
         var steamId = player.SteamID.ToString();
-        if (!_whitelist.Contains(steamId))
+
+        if (_config.Mode == 1)
         {
-            player.Kick("You are not whitelisted.", ENetworkDisconnectionReason.NETWORK_DISCONNECT_REJECT_RESERVED_FOR_LOBBY);
+            if (!_whitelist.Contains(steamId))
+            {
+                player.Kick("You are not whitelisted.", ENetworkDisconnectionReason.NETWORK_DISCONNECT_REJECT_RESERVED_FOR_LOBBY);
+            }
+
+        }
+        else if (_config.Mode == 2) 
+        {
+            if (_whitelist.Contains(steamId))
+            {
+                player.Kick("You are not whitelisted.", ENetworkDisconnectionReason.NETWORK_DISCONNECT_REJECT_RESERVED_FOR_LOBBY);
+            }
         }
 
-        return HookResult.Continue;
+            return HookResult.Continue;
     }
 
     private void OnWlcommand(ICommandContext context)
     {
         if (context.Args.Length < 1)
         {
-            context.Reply(Core.Localizer["usage.hint", _config.WhitelistCommand]);
+            context.Reply(Core.Localizer["usage.hint", _config.AddCommand]);
             return;
         }
 
@@ -126,7 +143,7 @@ public partial class Whitelist(ISwiftlyCore core) : BasePlugin(core) {
     {
         if (context.Args.Length < 1)
         {
-            context.Reply(Core.Localizer["usage.hint", _config.UnWhitelistCommand]);
+            context.Reply(Core.Localizer["usage.hint", _config.RemoveCommand]);
             return;
         }
         var steamId = context.Args[0];

@@ -10,6 +10,7 @@
 <div align="center">
   <img src="https://img.shields.io/github/v/tag/asapverneri/Whitelist-SwiftlyS2?style=for-the-badge&label=Version" alt="GitHub tag (with filter)" />
   <img src="https://img.shields.io/github/last-commit/asapverneri/Whitelist-SwiftlyS2?style=for-the-badge" alt="Last Commit" />
+  <a href="https://discord.gg/tv44kYjZRe"> <img src="https://img.shields.io/badge/Discord-%235865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
 </div>
 
 ---
@@ -19,8 +20,9 @@
 <p>✅ Whitelist saves to txt file</p>
 <p>✅ Configurable commands</p>
 <p>✅ Configurable permission</p>
+<p>✅ Blacklisting</p>
 <br>
-<p>⬜ Blacklisting</p>
+<p>⬜ ...</p>
 
 ---
 
@@ -33,6 +35,7 @@
 ```json
 {
   "Whitelist": {
+    "Mode": 1,   // 1 = Whitelist, 2 = Blacklist
     "WhitelistCommand": "wl",
     "UnWhitelistCommand": "uwl",
     "PermissionForCommands": "wl.admin"
@@ -45,7 +48,7 @@
 ## 📫 Contact
 
 <div align="center">
-  <a href="https://discordapp.com/users/367644530121637888">
+  <a href="https://discord.gg/tv44kYjZRe">
     <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
   </a>
   <a href="https://steamcommunity.com/id/vvernerii/">

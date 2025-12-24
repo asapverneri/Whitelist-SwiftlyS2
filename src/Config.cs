@@ -5,7 +5,8 @@ using System.Text;
 namespace Whitelist;
 public class PluginConfig
 {
-    public string WhitelistCommand { get; set; } = "wl";
-    public string UnWhitelistCommand { get; set; } = "uwl";
+    public int Mode { get; set; } = 1;
+    public string AddCommand { get; set; } = "wl";
+    public string RemoveCommand { get; set; } = "uwl";
     public string PermissionForCommands { get; set; } = "admin.ban";
 }
