@@ -36,8 +36,8 @@
 {
   "Whitelist": {
     "Mode": 1,   // 1 = Whitelist, 2 = Blacklist
-    "WhitelistCommand": "wl",
-    "UnWhitelistCommand": "uwl",
+    "AddCommand": "wl",
+    "RemoveCommand": "uwl",
     "PermissionForCommands": "wl.admin"
   }
 }
